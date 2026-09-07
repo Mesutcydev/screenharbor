@@ -32,11 +32,11 @@ final class AppStreamClientTests: XCTestCase {
         XCTAssertTrue(intent.accepts(next))
     }
 
-    func testOpeningModelPreservesWindowSizeByDefault() {
+    func testOpeningModelRequestsPortraitAdaptiveSizingByDefault() {
         let environment = ClientAppEnvironment.makeDefault(clientName: "Portrait Regression Test")
         let model = AppStreamViewModel(environment: environment)
         model.updateClientViewport(size: CGSize(width: 390, height: 720))
-        XCTAssertEqual(model.sizingMode, .original)
+        XCTAssertEqual(model.sizingMode, .adaptive)
         XCTAssertFalse(model.isResizing)
     }
 

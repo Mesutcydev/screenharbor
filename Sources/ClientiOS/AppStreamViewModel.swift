@@ -97,7 +97,7 @@ final class AppStreamViewModel: ObservableObject {
     @Published private(set) var geometryRevision = 0
     @Published private(set) var sizingNotice: String?
     @Published private(set) var supportsAdaptiveSizing = false
-    @Published private(set) var sizingMode: AppWindowSizingMode = .original
+    @Published private(set) var sizingMode: AppWindowSizingMode = .adaptive
     private var viewportSize = CGSize.zero
     private var sizingIntent = AppStreamSizingIntent()
     private var resizeTask: Task<Void, Never>?
@@ -322,7 +322,6 @@ final class AppStreamViewModel: ObservableObject {
         }
         resumeSelection = nil
         selectionFingerprint = environment.sessionCoordinator.connectedHostFingerprint
-        sizingMode = .original
         sizingIntent.cancel()
         streamedApplication = application
         sendTargetRequest(application, windowID: windowID)

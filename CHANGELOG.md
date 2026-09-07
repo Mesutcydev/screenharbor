@@ -7,6 +7,12 @@ their original product names. The format follows
 
 ## [Unreleased]
 
+### Stream portrait fit and controls
+
+- Selected Mac apps resize to a portrait shape that fits iPhone screens again. Vamp Sync keeps the adaptive sizing mode across selections and Assistant app streams request the portrait-fit resize as soon as the app opens.
+- Stream keeps one control deck: the bottom bar owns close, annotate, keyboard, fit/sizing, and hide controls, dead placeholder buttons are gone, and the app-stream top bar no longer repeats them.
+- Stream sizing notices float over the video instead of reserving a permanent strip, so the picture keeps its full viewport.
+
 ### Stream stability follow-up
 
 - Restore installed-app icons by paging inventories before removing icon data.

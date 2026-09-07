@@ -126,3 +126,29 @@ and verified against the installed designated requirement. Read-only checks befo
 after confirmed Screen Recording and Accessibility remained granted. Application data and
 TCC records were not changed. Original app bundles were retained as local backups. Sync
 was left running; Assistant was verified separately and closed to keep one host running.
+
+## 0.1.19: portrait-fit default and one control deck
+
+User feedback after the landscape add/remove cycle: portrait-only Stream must still resize
+the selected Mac app to a shape that fits the iPhone screen, and the split top-bar/bottom-bar
+controls must collapse into one predictable surface.
+
+- Sync app streaming defaults to adaptive sizing again. `select` no longer resets the mode to
+  Original, so the first target request already carries the viewport dimensions and modern
+  hosts shape the window to the portrait viewport. Old hosts without the sizing metadata keep
+  the original window because the request omits the legacy aspect hint until the host
+  acknowledges sizing support.
+- Assistant app streams request the adaptive portrait resize on open instead of preserving the
+  original size. Original proportions remain available under Stream options.
+- The bottom control deck is the single control surface for both Assistant experiences. Close,
+  annotate, keyboard (with terminal focus), fit/sizing, and hide remain; the disabled
+  magicmouse/terminal/audio/PiP/statistics placeholders and their divider were removed. The
+  app-stream top bar keeps only Apps, title, Adjust view, Stream options, and the zoomed 1×
+  reset, so the keyboard and sizing controls are no longer duplicated.
+- The sizing notice is a floating overlay above the control deck instead of a layout row with a
+  fixed height, so the video viewport no longer loses 36 points and notice changes cannot feed
+  a resize/viewport feedback loop.
+
+Validation: 607 Swift tests passed, the iOS 27 simulator suite passed with 34 tests, and
+VampMiniHost/VampTerminalApp/VampStream Release builds passed. Live physical-device
+acceptance on real apps is still outstanding.

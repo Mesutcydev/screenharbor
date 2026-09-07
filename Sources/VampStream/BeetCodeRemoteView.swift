@@ -225,10 +225,6 @@ struct BeetCodeRemoteView: View {
                 // tall Mac window and also reports an oversized viewport back to the Mac.
                 appStreamTopBar
                     .background(Color.black)
-                if onAdaptiveSizing != nil {
-                    Text(sizingNotice ?? " ").font(.caption).foregroundStyle(.white)
-                        .lineLimit(2).padding(.horizontal, 6).frame(maxWidth: .infinity).frame(height: 36)
-                }
             }
 
             GeometryReader { proxy in
@@ -340,6 +336,21 @@ struct BeetCodeRemoteView: View {
                     }
                 }
                 .overlay(alignment: .bottom) {
+                    if let notice = sizingNotice, !notice.isEmpty, !keyboardActive {
+                        Text(notice)
+                            .font(.caption)
+                            .foregroundStyle(.white)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 62)
+                            .allowsHitTesting(false)
+                            .accessibilityLabel("Stream notice: \(notice)")
+                    }
+                }
+                .overlay(alignment: .bottom) {
                     classicBottomChrome(bottomInset: proxy.safeAreaInsets.bottom)
                 }
                 .overlay(alignment: .bottom) {
@@ -447,20 +458,6 @@ struct BeetCodeRemoteView: View {
             } label: { Image(systemName: "ellipsis.circle").frame(minWidth: 44, minHeight: 44) }
             .accessibilityLabel("Stream options")
             .sheet(isPresented: $showsGestureHelp) { AppStreamGestureHelpView() }
-            Button {
-                if !keyboardActive, isTerminalApplication { input.focusTerminal() }
-                keyboardActive.toggle()
-            } label: {
-                Image(systemName: keyboardActive ? "keyboard.chevron.compact.down" : "keyboard")
-                    .font(.subheadline.weight(.semibold))
-                    .padding(.horizontal, 13)
-                    .padding(.vertical, 8)
-                    .background(.ultraThinMaterial, in: Capsule())
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(keyboardActive ? "Hide keyboard" : "Show keyboard")
-            .accessibilityHint("Type into the Mac through the on-screen keyboard")
-
             if viewportZoom > defaultViewportZoom + 0.05 || viewportOffset != .zero {
                 Button {
                     withAnimation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.86)) {
@@ -515,10 +512,6 @@ struct BeetCodeRemoteView: View {
         HStack(spacing: 0) {
             classicIconButton(systemName: "xmark", isDestructive: true, action: onClose)
 
-            classicUnavailableButton(
-                systemName: "magicmouse",
-                label: "Bluetooth input status is available for Vamp Sync sessions")
-
             classicIconButton(
                 systemName: annotationStore.isVisible ? "pencil.slash" : "pencil.tip",
                 isActive: annotationStore.isVisible
@@ -530,6 +523,7 @@ struct BeetCodeRemoteView: View {
                 systemName: keyboardActive ? "keyboard.chevron.compact.down" : "keyboard",
                 isActive: keyboardActive
             ) {
+                if !keyboardActive, isTerminalApplication { input.focusTerminal() }
                 keyboardActive.toggle()
             }
 
@@ -553,26 +547,21 @@ struct BeetCodeRemoteView: View {
                 .accessibilityLabel("Switch display")
             }
 
-            classicUnavailableButton(
-                systemName: "terminal.fill",
-                label: "Terminal is not available in this Assistant control session")
-            classicUnavailableButton(
-                systemName: "speaker.slash.fill",
-                label: "Remote audio is not available in this Assistant control session")
-            classicUnavailableButton(
-                systemName: "pip.enter",
-                label: "Picture in Picture is not available in this Assistant control session")
-
-            Menu {
-                if windowID != nil {
-                    Button {
-                        fillScreen = false
-                        input.setFillScreen(false)
+            if windowID != nil {
+                classicIconButton(
+                    systemName: "rectangle.arrowtriangle.2.inward",
+                    isActive: false
+                ) {
+                    if input.dragLocked { input.toggleDragLockCurrentPointer() }
+                    withAnimation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.86)) {
                         resetViewportZoom()
-                    } label: {
-                        Label("Adaptive Fit", systemImage: "checkmark")
                     }
-                } else {
+                    adjustsViewport = false
+                }
+                .accessibilityLabel("Fit window")
+                .accessibilityHint("Reset the local picture to fit the stream")
+            } else {
+                Menu {
                     Button {
                         fillScreen = false
                         input.setFillScreen(false)
@@ -587,26 +576,17 @@ struct BeetCodeRemoteView: View {
                     } label: {
                         Label("Fill Screen", systemImage: fillScreen ? "checkmark" : "rectangle.arrowtriangle.2.outward")
                     }
+                } label: {
+                    classicIconLabel(
+                        systemName: fillScreen ? "rectangle.arrowtriangle.2.outward" : "rectangle.arrowtriangle.2.inward",
+                        isActive: fillScreen,
+                        isDimmed: false,
+                        isDestructive: false)
                 }
-            } label: {
-                classicIconLabel(
-                    systemName: fillScreen ? "rectangle.arrowtriangle.2.outward" : "rectangle.arrowtriangle.2.inward",
-                    isActive: fillScreen,
-                    isDimmed: false,
-                    isDestructive: false)
+                .buttonStyle(.plain)
+                .accessibilityLabel("Remote display sizing")
+                .accessibilityValue(fillScreen ? "Fill Screen" : "Fit Display")
             }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Remote display sizing")
-            .accessibilityValue(windowID != nil ? "Adaptive Fit" : (fillScreen ? "Fill Screen" : "Fit Display"))
-
-            classicUnavailableButton(
-                systemName: "chart.bar",
-                label: "Connection statistics are unavailable for this Assistant stream")
-
-            Rectangle()
-                .fill(Color.white.opacity(0.18))
-                .frame(width: 1, height: 22)
-                .padding(.horizontal, 6)
 
             classicIconButton(systemName: "eye.slash", isDimmed: true) {
                 withAnimation(reduceMotion ? nil : .spring(response: 0.28, dampingFraction: 0.82)) {
@@ -626,17 +606,7 @@ struct BeetCodeRemoteView: View {
         .overlay(Capsule(style: .continuous)
             .strokeBorder(Color.white.opacity(0.20), lineWidth: 0.8))
         .shadow(color: .black.opacity(0.28), radius: 12, y: 5)
-        .frame(maxWidth: .infinity, alignment: .center)
-    }
-
-    private func classicUnavailableButton(systemName: String, label: String) -> some View {
-        Button(action: {}) {
-            classicIconLabel(systemName: systemName, isActive: false, isDimmed: true, isDestructive: false)
-        }
-        .buttonStyle(.plain)
-        .disabled(true)
-        .accessibilityLabel(label)
-        .accessibilityHint(label)
+            .frame(maxWidth: .infinity, alignment: .center)
     }
 
     private func classicIconButton(

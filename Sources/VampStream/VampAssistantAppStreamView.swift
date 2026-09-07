@@ -208,8 +208,9 @@ struct VampAssistantAppStreamView: View {
         launchingName = application.name
         errorMessage = nil
         defer { if revision == selectionRevision { launchingName = nil } }
-        adaptive = false
-        sizingRequested = false
+        adaptive = true
+        sizingRequested = true
+        sizingActionID = UUID()
         sizingRecoveryFailed = false
         if application.isRunning, application.windowID != nil {
             present(application)
