@@ -142,3 +142,8 @@ html[data-theme="light"] body .product-hero:not(.arcade-marquee) h1 .marked {
   color: #202020;
   text-shadow: inherit;
 }
+
+/* Angular screen-and-fangs emblem replaces the circular lettermark. */
+body .brand-mark { width: 40px; height: 40px; flex: 0 0 40px; border: 0; border-radius: 0; background: none; box-shadow: none; }
+body .brand-mark svg { width: 40px; height: 40px; }
+@media(max-width:720px) { body .brand-mark, body .brand-mark svg { width: 32px; height: 32px; } body .brand-mark { flex-basis: 32px; } }
