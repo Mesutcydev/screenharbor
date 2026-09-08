@@ -165,3 +165,12 @@ body .arcade-marquee h1::after { background-image: linear-gradient(105deg, trans
 body .arcade-marquee[data-motion-paused="true"] *, body .arcade-marquee[data-motion-paused="true"] *::before, body .arcade-marquee[data-motion-paused="true"] *::after { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .hero-grid-motion, .hero-frame-sweep, .hero-motion-toggle { display: none; } body .arcade-marquee h1::after { animation: none; background-image: linear-gradient(to bottom, #fff 0%, #f4f4f4 43%, #999 49%, #222 51%, #eee 53%, #bcbcbc 79%, #e8e8e8 100%); background-size: 100% 100%; } }
 @media(max-width:720px) { .hero-motion-toggle { left: 16px; bottom: 10px; font-size: 8px; } }
+/* A low-intensity edge light keeps the cabinet frames crisp without a neon halo. */
+:root { --card-edge-light: rgba(255,255,255,.14); --card-edge-halo: rgba(255,255,255,.055); }
+html[data-theme="light"] { --card-edge-light: rgba(255,255,255,.85); --card-edge-halo: rgba(0,0,0,.045); }
+body :is(.family-card,.feature-card,.path-card,.gallery-card,.download-card,.surface-card,.flow-step,.security-callout,.sync-destination,.product-visual,.promo-film-frame,.product-rail,.guard-grid,.install-notes) {
+  box-shadow: inset 0 0 0 1px var(--card-edge-light), 0 0 7px 1px var(--card-edge-halo), 4px 4px 0 var(--bg-deep);
+}
+body :is(.family-card,.feature-card,.path-card,.gallery-card):hover {
+  box-shadow: inset 0 0 0 1px var(--card-edge-light), 0 0 9px 1px var(--card-edge-halo), 4px 4px 0 var(--arcade-magenta);
+}
