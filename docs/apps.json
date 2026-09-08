@@ -51,6 +51,26 @@
       "category": "utilities",
       "versions": [
         {
+          "version": "0.1.41",
+          "buildVersion": "95",
+          "marketingVersion": "0.1.41 (95)",
+          "date": "2026-09-08",
+          "localizedDescription": "Fixes the inset app-icon border with dedicated full-bleed iOS artwork. Includes the latest interface polish.",
+          "downloadURL": "https://github.com/Mesutcydev/vamp-assistant/releases/download/ios-v0.1.41/Vamp-Assistant-iOS-0.1.41-build-95-unsigned.ipa",
+          "size": 8854640,
+          "minOSVersion": "18.0"
+        },
+        {
+          "version": "0.1.40",
+          "buildVersion": "94",
+          "marketingVersion": "0.1.40 (94)",
+          "date": "2026-09-08",
+          "localizedDescription": "Refined Sessions header, compact composer, guided pairing, adaptive iPad layouts, restrained activity feedback, and improved approval previews.",
+          "downloadURL": "https://github.com/Mesutcydev/vamp-assistant/releases/download/ios-v0.1.40/Vamp-Assistant-iOS-0.1.40-build-94-unsigned.ipa",
+          "size": 7411782,
+          "minOSVersion": "18.0"
+        },
+        {
           "version": "0.1.38",
           "buildVersion": "92",
           "marketingVersion": "0.1.38 (92)",
