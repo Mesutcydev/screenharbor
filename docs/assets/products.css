@@ -609,3 +609,18 @@ body.assistant-page .assistant-jobs .feature-card:nth-child(n+4) { grid-column: 
   body.assistant-page .assistant-bento .gallery-card:hover,
   body.assistant-page .assistant-jobs .feature-card:hover { transform: none; }
 }
+
+/* Current Assistant captures retain the site's glass cards and native window edges. */
+body.assistant-page .assistant-settings-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+body.assistant-page .assistant-screenshot-link { display: block; background: transparent; }
+body.assistant-page .assistant-screenshot-link:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+body.assistant-page .gallery-card--current img { aspect-ratio: 1240 / 840; height: auto; background: transparent; }
+body.assistant-page .assistant-bento .gallery-card--lead img { height: auto; min-height: 0; aspect-ratio: 1240 / 840; background: transparent; }
+
+
+@media (max-width: 720px) { body.assistant-page .assistant-settings-gallery { grid-template-columns: 1fr; } }
+
+@media (min-width: 981px) {
+  body.assistant-page .assistant-bento .gallery-card--lead { grid-row: 1; }
+  body.assistant-page .assistant-bento .gallery-card--general { grid-column: 1; grid-row: 2; }
+}
