@@ -132,3 +132,13 @@ body .arcade-marquee h1::after { content: attr(data-text); position: absolute; i
 /* Only decorative artwork is desaturated; original product captures retain their pixels. */
 .marquee-art { filter: grayscale(1); }
 html[data-theme="dark"] .sync-mark-tile { color: var(--arcade-cream); background: var(--bg-deep); }
+/* Light surfaces need a crisp headline face rather than dark stacked extrusion. */
+html[data-theme="light"] body .product-hero:not(.arcade-marquee) h1 {
+  color: #202020;
+  text-shadow: 2px 2px 0 #d2d2d2;
+  -webkit-text-stroke: 0;
+}
+html[data-theme="light"] body .product-hero:not(.arcade-marquee) h1 .marked {
+  color: #202020;
+  text-shadow: inherit;
+}
