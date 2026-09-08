@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css?v=suite-16">
   <link rel="stylesheet" href="assets/products.css?v=preview-lightbox-20260908">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/arcade.css?v=arcade-20260908">
 </head>
 <body class="suite-home">
   <header class="site-header">
@@ -36,17 +37,25 @@
     <nav class="container mobile-menu" id="mobile-menu" data-open="false" hidden aria-label="Mobile navigation"><a class="text-button" href="#setup"><span data-i18n="ux.start">Start here</span></a><a class="text-button" href="#families"><span data-i18n="ux.compare">Compare clients</span></a><a class="text-button" href="#download"><span data-i18n="ux.downloads">Downloads</span></a><a class="text-button" href="#assistant"><span data-i18n="ai.homeNav">AI Assistant</span></a></nav>
   </header>
 
-  <main id="top"><section class="container product-hero" aria-labelledby="hero-title">
-      <div class="product-hero-copy"><div class="eyebrow" data-i18n="home.eyebrow">One Mac host · Your choice of client</div><h1 id="hero-title"><span data-i18n="home.title1">Your Mac.</span><br><span class="marked" data-i18n="home.title2">In reach.</span></h1><p class="product-hero-sub" data-i18n="ux.hero">Use a Mac app from another Mac, iPhone, or iPad. Install Vamp Sync on the Mac you want to reach, then choose one client for your other device.</p><div class="hero-actions"><a class="primary-button" href="#setup"><span data-i18n="ux.start">Start here</span><span aria-hidden="true">↗</span></a><a class="secondary-button" href="#families"><span data-i18n="home.clientsCta">Choose your client</span></a></div><p class="product-hero-note" data-i18n="home.note">Open source · private LAN or Tailscale · peer-approved.</p><a href="#assistant" class="text-button"><span data-i18n="ai.heroAI">Looking for AI? Meet Vamp Assistant →</span></a></div>
-      <figure id="sync-preview" class="product-visual product-visual--sync" aria-label="Vamp Sync connects your Mac to Control or Stream">
+  <main id="top">
+    <section class="container product-hero arcade-marquee ArcadeFrame ScanlineOverlay" aria-labelledby="hero-title">
+      <img class="marquee-art" src="assets/arcade/marquee-art.png" alt="" fetchpriority="high" width="1536" height="1024">
+      <span class="ArcadeBadge" aria-label="Open source">Open<br>source</span>
+      <p class="marquee-overline">PRIVATE CONNECTION / COMPLETE CONTROL</p>
+      <h1 id="hero-title" data-text="VAMP">VAMP</h1>
+      <p class="marquee-tagline" data-i18n="arcade.tagline">Your Mac. Beyond the screen.</p>
+      <p class="marquee-description" data-i18n="arcade.description">Stream your Mac, take control from anywhere on your private network, or build with your own AI. Choose your way in.</p>
+      <div class="hero-actions"><a class="primary-button ArcadeButton" href="#setup"><span data-i18n="ux.start">Start here</span> ↗</a><a class="secondary-button" href="assistant/">Vamp Assistant →</a></div>
+      <p class="marquee-foot">MAC · iPHONE · iPAD &nbsp; / &nbsp; LAN + TAILSCALE &nbsp; / &nbsp; OPEN SOURCE</p>
+    </section>
+    <section class="container arcade-routing" aria-labelledby="routing-title"><div><div class="eyebrow">01 / CONNECT YOUR MACHINES</div><h2 id="routing-title" data-i18n="arcade.routing">One host.<br>Choose your controls.</h2><p data-i18n="ux.hero">Use a Mac app from another Mac, iPhone, or iPad. Install Vamp Sync on the Mac you want to reach, then choose one client for your other device.</p><a class="text-button" href="sync/">Explore Vamp Sync →</a></div><figure id="sync-preview" class="product-visual product-visual--sync" aria-label="Vamp Sync connects your Mac to Control or Stream">
         <div class="sync-scene-heading"><span data-i18n="sync.sceneHeading">Your Mac, connected.</span><span class="sync-private"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="4.5" y="8.5" width="11" height="8" rx="2"/><path d="M7 8.5V6a3 3 0 0 1 6 0v2.5"/></svg><span data-i18n="sync.scenePrivate">Private</span></span></div>
         <div class="sync-diagram">
           <div class="sync-host"><div class="sync-mark-tile" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><rect x="23" y="11" width="18" height="3.2" rx="1.6"/><path fill-rule="evenodd" d="M12.5 18.5h39A6.5 6.5 0 0 1 58 25v20a6.5 6.5 0 0 1-6.5 6.5h-39A6.5 6.5 0 0 1 6 45V25a6.5 6.5 0 0 1 6.5-6.5zm5.8 6.4h27.4a2.4 2.4 0 0 1 2.4 2.4v13.4a2.4 2.4 0 0 1-2.4 2.4H18.3a2.4 2.4 0 0 1-2.4-2.4V27.3a2.4 2.4 0 0 1 2.4-2.4z"/><path d="M22.4 51.2 27.2 60 32 51.2z"/><path d="M32 51.2 36.8 60 41.6 51.2z"/></svg></div><h2>Vamp Sync</h2><p data-i18n="sync.sceneHost">On the Mac you want to reach</p></div>
           <div class="sync-destinations"><a class="sync-destination" href="#control"><span class="sync-destination-index">C</span><strong>Vamp Control</strong><span>Mac · iPhone · iPad</span><span class="sync-destination-arrow" aria-hidden="true">↗</span></a><a class="sync-destination" href="stream/"><span class="sync-destination-index">S</span><strong>Vamp Stream</strong><span>iPhone · iPad</span><span class="sync-destination-arrow" aria-hidden="true">↗</span></a></div>
         </div>
         <figcaption class="sync-scene-caption"><span data-i18n="sync.sceneCaption">One app window. Wherever you are.</span><span>LAN / Tailscale</span></figcaption>
-      </figure>
-    </section>
+      </figure></section>
     <section class="container promo-film-section" aria-labelledby="promo-film-title">
       <div class="promo-film-intro">
         <div>
@@ -76,6 +85,6 @@
     <section class="container product-section" id="assistant"><div class="product-section-head"><div><div class="section-kicker"><span class="number">03</span><span class="bar"></span></div><h2 class="section-title" data-i18n="ai.homeTitle">An AI workspace of your own.</h2></div><p class="section-lead" data-i18n="ai.homeLead">Meet Vamp Assistant: local AI, coding agents, specialist bots, and your work within reach on mobile.</p></div><article class="family-card optional-assistant"><div><div class="eyebrow"><span data-i18n="ai.independent">Mac app · independent of Sync</span></div><h3>Vamp Assistant</h3><p data-i18n="ai.homeCopy">Write and research, build and review code, or give work to four specialist bots. Bring your own models, providers, skills, and chat history. Use the built-in browser and iOS Simulator, then follow sessions and approve work from your phone. Sync is not required.</p><div class="card-meta"><span>LOCAL AI + API</span><span>CODE + BOTS</span><span>iPHONE + iPAD</span></div><a class="text-button" href="assistant/"><span data-i18n="ux.assistantMore">Explore Assistant →</span></a></div><a class="family-preview assistant-desktop-preview" href="assets/assistant/teenlight/00-home.jpg" data-theme-light="assets/assistant/teenlight/00-home.jpg" data-theme-dark="assets/assistant/teendark/00-home.png" target="_blank" rel="noreferrer" aria-label="Open full Assistant Mac preview"><img src="assets/assistant/teenlight/00-home.jpg" data-theme-light="assets/assistant/teenlight/00-home.jpg" data-theme-dark="assets/assistant/teendark/00-home.png" alt="Vamp Assistant home with model picker and agent composer" loading="lazy" width="1240" height="840"></a></article></section></main>
 
   <footer class="container site-footer"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#top" aria-label="Vamp home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path fill="currentColor" d="M8.05 8.4h5.2L16 19.4l2.75-11h5.2L17.4 26.3h-2.8L8.05 8.4z"/></svg></span><span class="brand-word">Vamp</span></a><p data-i18n="footer.familyCopy">Private AI and focused Mac streaming.</p></div><div class="footer-links"><a href="sync/">Sync</a><a href="#control">Control</a><a href="assistant/">Assistant</a><a href="stream/">Stream</a><a href="about/">About</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a><a href="https://github.com/Mesutcydev/vamp-assistant" target="_blank" rel="noreferrer">Assistant GitHub ↗</a><a href="https://github.com/Mesutcydev/vamp-suite" target="_blank" rel="noreferrer">Suite GitHub ↗</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Vamp · Apache 2.0</span><span data-i18n="footer.meta">local-first · peer-approved · no hosted relay</span></div></footer>
-  <script src="assets/site.js?v=preview-lightbox-20260908" defer></script>
+  <script src="assets/site.js?v=arcade-20260908" defer></script>
 </body>
 </html>

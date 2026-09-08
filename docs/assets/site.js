@@ -18,10 +18,10 @@
     });
     if (themeIcon) themeIcon.textContent = theme === 'light' ? '☀' : '☾';
     if (themeButton) themeButton.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f3eee4' : '#12110e');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#F8F0D8' : '#160D2B');
   };
   const storedTheme = localStorage.getItem('vamp-theme');
-  renderTheme(storedTheme === 'dark' ? 'dark' : 'light');
+  renderTheme(storedTheme === 'light' ? 'light' : 'dark');
   themeButton?.addEventListener('click', () => {
     const next = root.dataset.theme === 'light' ? 'dark' : 'light';
     localStorage.setItem('vamp-theme', next);
@@ -367,6 +367,11 @@
     "ai.botDetail": "Botlar özel tarayıcı profilleri tutar. Bot Konsolu’ndan izle, sıraya al veya yönlendir."
   });
   Object.assign(translations.tr, {"previews.modelsLabel": "Modeller", "previews.modelsTitle": "Mac’ine uygun modeli bul.", "previews.modelsCopy": "Bellek tahminleri ve önerilerle yerel modellere göz at.", "previews.agentLabel": "Ajan", "previews.agentTitle": "Ajanının sınırlarını belirle.", "previews.agentCopy": "Özerklik, üretim ayarları ve yerel çıkarım seçeneklerini belirle.", "previews.generalLabel": "Genel", "previews.generalTitle": "Kendine göre ayarla.", "previews.generalCopy": "Görünümü, yazı tipini, yazma alanını ve klavye kısayollarını ayarla.", "previews.providersLabel": "Sağlayıcılar", "previews.providersTitle": "Kendi bağlantılarını getir.", "previews.providersCopy": "Sağlayıcı hesaplarını, API anahtarlarını ve uyumlu ağ geçitlerini yönet.", "previews.botsLabel": "Botlar", "previews.botsTitle": "Uzmanlara kendi alanlarını ver.", "previews.botsCopy": "Odaklı işler için özel bot bilgisayarları ve tarayıcı profilleri hazırla.", "previews.networkLabel": "Ağ", "previews.networkTitle": "Erişim senin kontrolünde.", "previews.networkCopy": "Yerel API sunucusunu ve eşleştirilmiş uzak oturumları yapılandır.", "previews.pluginsLabel": "Eklentiler", "previews.pluginsTitle": "Araçlarını yanında getir.", "previews.pluginsCopy": "Kodlama ortamındaki becerileri, komutları ve iş akışlarını keşfet."});
+  Object.assign(translations.tr, {
+    'arcade.tagline': 'Mac’in. Ekranın ötesinde.',
+    'arcade.description': 'Mac’ini yayınla, özel ağındaki cihazlardan kontrol et veya kendi AI’ınla üret. Nasıl bağlanacağını sen seç.',
+    'arcade.routing': 'Tek host.<br>Kontrolü sen seç.'
+  });
   let currentLanguage = localStorage.getItem('vamp-lang') === 'tr' ? 'tr' : 'en';
   const originalText = new Map();
   document.querySelectorAll('[data-i18n]').forEach((element) => originalText.set(element, element.innerHTML));

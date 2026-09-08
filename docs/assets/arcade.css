@@ -1,0 +1,130 @@
+/* Arcade hardware design system. Artwork lives in the marquee; content stays crisp. */
+:root, html[data-theme="dark"] {
+  --arcade-bg: #160D2B; --arcade-panel: #21133D; --arcade-cyan: #16E6F4;
+  --arcade-magenta: #F2258F; --arcade-pink: #FF4D9F; --arcade-cream: #F8F0D8;
+  --arcade-orange: #FF7657; --arcade-yellow: #FFD467;
+  --frame-thin: 1px; --frame-heavy: 3px; --scanline-opacity: .025; --extrusion-depth: 5px;
+  --bg: var(--arcade-bg); --bg-deep: #0e081b; --surface: var(--arcade-panel); --surface-2: #291a45; --surface-3: #34234f;
+  --ink: var(--arcade-cream); --text: #e5ddec; --muted: #bfb1d0;
+  --line: #49355f; --line-strong: #88639d; --accent: var(--arcade-cyan); --accent-strong: var(--arcade-cyan);
+  --on-accent: #160D2B; --accent-soft: #163641; --mint: var(--arcade-cyan); --yellow: var(--arcade-yellow);
+  --product-glass: var(--arcade-panel); --shadow: 5px 5px 0 #090512;
+  --arcade-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  --bg: #F8F0D8; --bg-deep: #160D2B; --surface: #fff9e8; --surface-2: #efe3cd; --surface-3: #e2d2c4;
+  --ink: #21133D; --text: #392d4a; --muted: #625070; --line: #c7b4c7; --line-strong: #8b739e;
+  --accent: #006d7b; --accent-strong: #006d7b; --on-accent: #F8F0D8; --accent-soft: #d8edef;
+  --product-glass: var(--surface); color-scheme: light;
+}
+body { background: var(--bg); color: var(--text); font-family: 'Inter', Arial, sans-serif; }
+body::before, body::after, html[data-theme="dark"] body::before, html[data-theme="dark"] body::after { display: none; }
+body .container { width: min(1240px, calc(100% - 64px)); }
+body .site-header { background: var(--bg); border-bottom: 1px solid var(--accent); box-shadow: 0 4px 0 var(--bg), 0 5px 0 var(--arcade-magenta); backdrop-filter: none; }
+body .nav { min-height: 82px; }
+body .brand-word { font: 900 34px/1 var(--arcade-display); letter-spacing: .055em; text-transform: uppercase; text-shadow: 2px 2px 0 var(--arcade-magenta); }
+body .brand-mark { border-radius: 0; color: var(--ink); background: transparent; }
+body .brand-tag { color: var(--accent); border-color: var(--accent); border-radius: 0; }
+body .nav-links .text-button { font: 700 13px/1.2 var(--arcade-display); letter-spacing: .1em; }
+body :is(.primary-button, .secondary-button, .icon-button, .menu-button, .ArcadeButton) { border-radius: 0; transition: color 120ms, background 120ms, transform 120ms, box-shadow 120ms; }
+body :is(.primary-button, .ArcadeButton) { color: var(--arcade-cream); background: #b90c62; border: 1px solid var(--arcade-cream); box-shadow: 3px 3px 0 var(--arcade-bg), 5px 5px 0 var(--arcade-cyan); font: 800 17px/1.2 var(--arcade-display); letter-spacing: .075em; text-transform: uppercase; min-height: 48px; }
+body :is(.primary-button, .ArcadeButton):hover { background: #cd126e; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--arcade-bg), 6px 6px 0 var(--arcade-cyan); }
+body .secondary-button { color: var(--ink); background: var(--surface); border: 1px solid var(--accent); box-shadow: 3px 3px 0 var(--line); min-height: 48px; font: 700 16px/1.2 var(--arcade-display); letter-spacing: .055em; text-transform: uppercase; }
+body .secondary-button:hover { border-color: var(--arcade-magenta); color: var(--ink); background: var(--surface-2); transform: translateX(1px); }
+body :is(.icon-button,.menu-button) { color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); box-shadow: none; }
+body .text-button { color: var(--accent); }
+body .eyebrow, body .section-kicker, body .tile-lab { color: var(--accent); letter-spacing: .1em; }
+body :is(.family-card,.feature-card,.path-card,.gallery-card,.download-card,.surface-card,.flow-step,.security-callout,.sync-destination,.ArcadeFrame) { border: var(--frame-thin) solid var(--line-strong); border-top: 3px solid var(--accent); border-radius: 0; background: var(--surface); box-shadow: 4px 4px 0 var(--bg-deep); backdrop-filter: none; -webkit-backdrop-filter: none; }
+body :is(.family-card,.feature-card,.path-card,.gallery-card):hover { transform: none; box-shadow: 4px 4px 0 var(--arcade-magenta); }
+body :is(.section-title,.trust-card h1,.promo-film-intro h2,.ArcadeHeading) { font-family: var(--arcade-display); font-weight: 800; letter-spacing: .005em; text-transform: uppercase; color: var(--ink); }
+body .section-title, body.suite-home .section-title { font-size: clamp(36px,4.5vw,62px); line-height: .98; }
+body :is(.family-card h3,.feature-card h3,.path-card h3,.flow-step h3,.gallery-copy h3,.download-card h3,.sync-host h2) { font-family: var(--arcade-display); font-weight: 700; letter-spacing: .01em; }
+body :is(.family-card h3,.gallery-copy h3,.download-card h3) { font-size: 29px; }
+body :is(.card-number,.section-kicker .number) { border-radius: 0; border: 1px solid var(--accent); background: var(--bg); color: var(--accent); box-shadow: 3px 3px 0 var(--arcade-magenta); }
+body :is(.card-tag,.card-meta span) { border-radius: 0; border-color: var(--line-strong); color: var(--muted); }
+body .product-section { padding-top: 88px; }
+body .product-section-head { padding-top: 22px; border-top: 1px solid var(--accent); position: relative; }
+body .product-section-head::before, .RetroDivider { content: ''; position: absolute; top: -5px; left: 0; width: 90px; height: 2px; background: var(--arcade-magenta); }
+body .product-stat { background: var(--surface); backdrop-filter: none; }
+body .product-rail { border: 1px solid var(--accent); background: var(--line); }
+body .product-stat strong { color: var(--ink); font-family: var(--arcade-display); text-transform: uppercase; }
+body :is(.product-visual,.promo-film-frame) { border: 1px solid var(--accent); border-radius: 0; background: var(--surface); box-shadow: 5px 5px 0 var(--arcade-magenta); }
+body .product-visual::before { background: none; }
+body .product-visual--sync { background: var(--surface); }
+body .product-visual--sync::after { display: none; }
+body :is(.sync-mark-tile,.sync-destination-index) { border-radius: 0; background: var(--bg-deep); color: var(--arcade-cream); }
+body .sync-scene-heading, body .sync-scene-caption { color: var(--ink); border-color: var(--line-strong); }
+body .sync-destination { box-shadow: 3px 3px 0 var(--arcade-magenta); }
+body .visual-bar, body .promo-film-bar { color: var(--arcade-cream); border-color: var(--arcade-cyan); background: var(--arcade-bg); }
+body .visual-shot { border: 1px solid var(--line-strong); box-shadow: 4px 4px 0 var(--arcade-magenta); }
+body .visual-label { background: var(--surface); border: 1px solid var(--accent); box-shadow: 3px 3px 0 var(--arcade-magenta); }
+body .gallery-copy { border-top: 1px solid var(--line-strong); }
+body .client-preview::before { display: none; }
+body :is(.client-preview img,.assistant-desktop-preview img) { box-shadow: none; }
+body .promo-film-stage::before { display: none; }
+body .promo-film-caption { background: var(--surface); border-color: var(--line-strong); }
+body .security-callout { color: var(--text); }
+body .guard { background: var(--surface); }
+body .guard-grid { background: var(--line); border-color: var(--line-strong); }
+body .install-notes { border-color: var(--line-strong); background: var(--surface); }
+body input, body select, body textarea { border-radius: 0; background: var(--surface); color: var(--ink); border: 1px solid var(--accent); }
+body :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+body .site-footer { border-top: 3px double var(--accent); margin-top: 88px; }
+body .footer-bottom { border-color: var(--arcade-magenta); color: var(--muted); }
+body .product-hero:not(.arcade-marquee) { gap: 48px; padding-block: 64px; }
+body .product-hero h1 { font: 900 clamp(58px,6.5vw,100px)/.95 var(--arcade-display); letter-spacing: .005em; text-transform: uppercase; text-shadow: 3px 3px 0 var(--arcade-magenta), 5px 5px 0 var(--bg-deep); }
+body .product-hero h1 .marked { color: var(--accent); background: none; padding: 0; }
+/* Marquee composition: illustration is decorative; every label remains live text. */
+body .arcade-marquee { display: flex; flex-direction: column; justify-content: center; text-align: center; isolation: isolate; position: relative; min-height: 690px; margin-top: 34px; padding: 68px 48px 76px; gap: 0; color: var(--arcade-cream); background: var(--arcade-bg); border: 3px solid var(--arcade-cream); box-shadow: 0 0 0 5px var(--arcade-bg), 0 0 0 7px var(--arcade-magenta); overflow: hidden; }
+.marquee-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; z-index: -2; }
+.ScanlineOverlay::after { position: absolute; inset: 0; content: ''; background: repeating-linear-gradient(to bottom, rgba(255,255,255,var(--scanline-opacity)) 0 1px, transparent 1px 4px); pointer-events: none; z-index: -1; }
+.marquee-overline { font: 600 12px/1.5 'IBM Plex Mono', monospace; letter-spacing: .18em; color: var(--arcade-cream); margin-bottom: 20px; background: var(--arcade-bg); padding: 6px 14px; }
+body .arcade-marquee h1 { margin: 0; max-width: none; font: 900 clamp(120px,19vw,252px)/.78 var(--arcade-display); letter-spacing: .025em; color: var(--arcade-cream); -webkit-text-stroke: 2px var(--arcade-bg); text-shadow: 0 5px 0 var(--arcade-magenta), 0 10px 0 #6d134d, 0 14px 0 var(--arcade-cyan), 3px 17px 0 var(--arcade-bg); }
+.marquee-tagline { margin-top: 32px; font: 800 clamp(23px,3.3vw,42px)/1.1 var(--arcade-display); letter-spacing: .13em; color: var(--arcade-cyan); text-transform: uppercase; text-shadow: 2px 2px 0 #090512; }
+.marquee-description { max-width: 570px; font-size: 16px; line-height: 1.65; color: var(--arcade-cream); margin: 22px auto 0; background: #160d2be6; padding: 8px 14px; }
+body .arcade-marquee .hero-actions { justify-content: center; margin-top: 24px; }
+body .arcade-marquee .primary-button { min-width: 208px; }
+body .arcade-marquee .secondary-button { color: var(--arcade-cyan); background: var(--arcade-bg); border-color: var(--arcade-cyan); }
+.marquee-foot { margin-top: 30px; font: 500 10px/1.5 'IBM Plex Mono',monospace; color: var(--arcade-cream); letter-spacing: .1em; }
+.ArcadeBadge { display: grid; place-items: center; width: 94px; height: 94px; padding: 20px; clip-path: polygon(50% 0,61% 17%,80% 8%,81% 29%,100% 35%,87% 51%,100% 68%,79% 73%,77% 94%,58% 86%,44% 100%,34% 82%,13% 90%,16% 68%,0 57%,17% 43%,7% 22%,29% 23%,34% 3%); background: var(--arcade-cyan); color: var(--arcade-bg); font: 800 17px/1 var(--arcade-display); text-transform: uppercase; }
+.arcade-marquee .ArcadeBadge { position: absolute; right: 5%; top: 9%; transform: rotate(10deg); }
+.arcade-routing { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: center; padding-block: 76px 30px; }
+.arcade-routing .product-visual { min-height: 410px; }
+.arcade-routing h2 { font: 800 clamp(38px,4.8vw,62px)/1 var(--arcade-display); text-transform: uppercase; color: var(--ink); margin: 18px 0; }
+.arcade-routing p { line-height: 1.7; margin-bottom: 20px; }
+@media (max-width:980px) {
+ body .container { width: calc(100% - 40px); }
+ body .product-hero:not(.arcade-marquee), .arcade-routing { grid-template-columns: 1fr; }
+ body .arcade-marquee { min-height: 610px; padding-inline: 36px; }
+ .arcade-marquee .ArcadeBadge { width: 72px; height: 72px; font-size: 13px; right: 4%; top: 7%; }
+ .arcade-routing { gap: 28px; }
+}
+@media (max-width:720px) {
+ body .container { width: calc(100% - 32px); }
+ body .nav { min-height: 68px; }
+ body .brand-word { font-size: 27px; }
+ body .arcade-marquee { min-height: 585px; margin-top: 22px; padding: 76px 20px 42px; }
+ body .arcade-marquee h1 { font-size: clamp(110px,29vw,190px); -webkit-text-stroke: 1px var(--arcade-bg); }
+ .marquee-art { object-fit: cover; }
+ .marquee-overline { font-size: 9px; letter-spacing: .07em; margin-bottom: 22px; }
+ .marquee-tagline { font-size: 24px; letter-spacing: .06em; }
+ .marquee-description { font-size: 14px; margin-top: 16px; }
+ .arcade-marquee .ArcadeBadge { width: 60px; height: 60px; padding: 12px; top: 12px; right: 14px; font-size: 11px; }
+ body .arcade-marquee .hero-actions { width: 100%; gap: 14px; }
+ body .arcade-marquee .hero-actions a { width: 100%; }
+ .marquee-foot { font-size: 8px; }
+ body .product-section { padding-top: 58px; }
+ body .product-hero h1 { font-size: 62px; }
+ body .product-hero:not(.arcade-marquee) { padding-top: 40px; gap: 32px; }
+ body .gallery-copy h3 { font-size: 26px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ html { scroll-behavior: auto; }
+ *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+html, html[data-theme="dark"], html[data-theme="light"], html[data-theme="dark"] body { background: var(--bg); }
+html[data-theme="dark"] .product-visual--sync::before { background: none; }
+body .arcade-marquee h1 { position: relative; }
+body .arcade-marquee h1::after { content: attr(data-text); position: absolute; inset: 0; background: linear-gradient(to bottom, #fffbed 0%, #f8f0d8 43%, #938594 49%, #23143c 51%, #e5f7f2 53%, #84dbe8 79%, #16e6f4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 1px #160D2B; text-shadow: none; }
+@media(max-width:720px) { body.suite-home .arcade-marquee h1 { font-size: clamp(110px,29vw,190px); } }
