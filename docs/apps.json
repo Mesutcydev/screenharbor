@@ -51,6 +51,16 @@
       "category": "utilities",
       "versions": [
         {
+          "version": "0.1.38",
+          "buildVersion": "92",
+          "marketingVersion": "0.1.38 (92)",
+          "date": "2026-09-08",
+          "localizedDescription": "Refreshed mobile interface, shared-file download fixes, and safer delayed actions when switching Macs.",
+          "downloadURL": "https://github.com/Mesutcydev/vamp-assistant/releases/download/ios-v0.1.38/Vamp-Assistant-iOS-0.1.38-build-92-unsigned.ipa",
+          "size": 7309728,
+          "minOSVersion": "18.0"
+        },
+        {
           "version": "0.1.36",
           "buildVersion": "58",
           "marketingVersion": "0.1.36 (58)",
