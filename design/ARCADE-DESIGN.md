@@ -1,6 +1,6 @@
 # Arcade site redesign
 
-Shared system: `docs/assets/arcade.css`. Cabinet violet and cyan/magenta framing, cream chrome display type, a single illustrated marquee, and quiet rectangular content panels. Light mode uses cream paper and darker readable accent inks. Body copy has no distortion; reduced motion disables transitions. Existing original app previews are unchanged.
+Shared system: `docs/assets/arcade.css`. Monochrome charcoal and silver framing, silver chrome display type, a single illustrated marquee, and quiet rectangular content panels. Light mode uses neutral white and darker readable gray accents. The generated artwork is displayed through CSS grayscale; the source image and original product screenshots are unchanged. Body copy has no distortion; reduced motion disables transitions. Existing original app previews are unchanged.
 
 Reusable CSS components: ArcadeFrame, ArcadeButton, ArcadeHeading, ArcadeBadge, RetroDivider, ScanlineOverlay. The generated marquee contains the perspective grid and sunset instead of duplicating these graphics across the site.
 

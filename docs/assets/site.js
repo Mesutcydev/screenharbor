@@ -18,7 +18,7 @@
     });
     if (themeIcon) themeIcon.textContent = theme === 'light' ? '☀' : '☾';
     if (themeButton) themeButton.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#F8F0D8' : '#160D2B');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f4f4f4' : '#111111');
   };
   const storedTheme = localStorage.getItem('vamp-theme');
   renderTheme(storedTheme === 'light' ? 'light' : 'dark');

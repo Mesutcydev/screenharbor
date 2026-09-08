@@ -1,21 +1,21 @@
 /* Arcade hardware design system. Artwork lives in the marquee; content stays crisp. */
 :root, html[data-theme="dark"] {
-  --arcade-bg: #160D2B; --arcade-panel: #21133D; --arcade-cyan: #16E6F4;
-  --arcade-magenta: #F2258F; --arcade-pink: #FF4D9F; --arcade-cream: #F8F0D8;
-  --arcade-orange: #FF7657; --arcade-yellow: #FFD467;
+  --arcade-bg: #111111; --arcade-panel: #1c1c1c; --arcade-cyan: #e8e8e8;
+  --arcade-magenta: #888888; --arcade-pink: #aaaaaa; --arcade-cream: #f4f4f4;
+  --arcade-orange: #bcbcbc; --arcade-yellow: #dddddd;
   --frame-thin: 1px; --frame-heavy: 3px; --scanline-opacity: .025; --extrusion-depth: 5px;
-  --bg: var(--arcade-bg); --bg-deep: #0e081b; --surface: var(--arcade-panel); --surface-2: #291a45; --surface-3: #34234f;
-  --ink: var(--arcade-cream); --text: #e5ddec; --muted: #bfb1d0;
-  --line: #49355f; --line-strong: #88639d; --accent: var(--arcade-cyan); --accent-strong: var(--arcade-cyan);
-  --on-accent: #160D2B; --accent-soft: #163641; --mint: var(--arcade-cyan); --yellow: var(--arcade-yellow);
-  --product-glass: var(--arcade-panel); --shadow: 5px 5px 0 #090512;
+  --bg: var(--arcade-bg); --bg-deep: #080808; --surface: var(--arcade-panel); --surface-2: #252525; --surface-3: #303030;
+  --ink: var(--arcade-cream); --text: #dedede; --muted: #bbbbbb;
+  --line: #444444; --line-strong: #777777; --accent: var(--arcade-cyan); --accent-strong: var(--arcade-cyan);
+  --on-accent: #111111; --accent-soft: #333333; --mint: var(--arcade-cyan); --yellow: var(--arcade-yellow);
+  --product-glass: var(--arcade-panel); --shadow: 5px 5px 0 #050505;
   --arcade-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   color-scheme: dark;
 }
 html[data-theme="light"] {
-  --bg: #F8F0D8; --bg-deep: #160D2B; --surface: #fff9e8; --surface-2: #efe3cd; --surface-3: #e2d2c4;
-  --ink: #21133D; --text: #392d4a; --muted: #625070; --line: #c7b4c7; --line-strong: #8b739e;
-  --accent: #006d7b; --accent-strong: #006d7b; --on-accent: #F8F0D8; --accent-soft: #d8edef;
+  --bg: #f4f4f4; --bg-deep: #111111; --surface: #fafafa; --surface-2: #e8e8e8; --surface-3: #d6d6d6;
+  --ink: #1c1c1c; --text: #333333; --muted: #606060; --line: #bdbdbd; --line-strong: #808080;
+  --accent: #444444; --accent-strong: #444444; --on-accent: #f4f4f4; --accent-soft: #e3e3e3;
   --product-glass: var(--surface); color-scheme: light;
 }
 body { background: var(--bg); color: var(--text); font-family: 'Inter', Arial, sans-serif; }
@@ -28,8 +28,8 @@ body .brand-mark { border-radius: 0; color: var(--ink); background: transparent;
 body .brand-tag { color: var(--accent); border-color: var(--accent); border-radius: 0; }
 body .nav-links .text-button { font: 700 13px/1.2 var(--arcade-display); letter-spacing: .1em; }
 body :is(.primary-button, .secondary-button, .icon-button, .menu-button, .ArcadeButton) { border-radius: 0; transition: color 120ms, background 120ms, transform 120ms, box-shadow 120ms; }
-body :is(.primary-button, .ArcadeButton) { color: var(--arcade-cream); background: #b90c62; border: 1px solid var(--arcade-cream); box-shadow: 3px 3px 0 var(--arcade-bg), 5px 5px 0 var(--arcade-cyan); font: 800 17px/1.2 var(--arcade-display); letter-spacing: .075em; text-transform: uppercase; min-height: 48px; }
-body :is(.primary-button, .ArcadeButton):hover { background: #cd126e; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--arcade-bg), 6px 6px 0 var(--arcade-cyan); }
+body :is(.primary-button, .ArcadeButton) { color: var(--arcade-cream); background: #333333; border: 1px solid var(--arcade-cream); box-shadow: 3px 3px 0 var(--arcade-bg), 5px 5px 0 var(--arcade-cyan); font: 800 17px/1.2 var(--arcade-display); letter-spacing: .075em; text-transform: uppercase; min-height: 48px; }
+body :is(.primary-button, .ArcadeButton):hover { background: #484848; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--arcade-bg), 6px 6px 0 var(--arcade-cyan); }
 body .secondary-button { color: var(--ink); background: var(--surface); border: 1px solid var(--accent); box-shadow: 3px 3px 0 var(--line); min-height: 48px; font: 700 16px/1.2 var(--arcade-display); letter-spacing: .055em; text-transform: uppercase; }
 body .secondary-button:hover { border-color: var(--arcade-magenta); color: var(--ink); background: var(--surface-2); transform: translateX(1px); }
 body :is(.icon-button,.menu-button) { color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); box-shadow: none; }
@@ -80,9 +80,9 @@ body .arcade-marquee { display: flex; flex-direction: column; justify-content: c
 .marquee-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; z-index: -2; }
 .ScanlineOverlay::after { position: absolute; inset: 0; content: ''; background: repeating-linear-gradient(to bottom, rgba(255,255,255,var(--scanline-opacity)) 0 1px, transparent 1px 4px); pointer-events: none; z-index: -1; }
 .marquee-overline { font: 600 12px/1.5 'IBM Plex Mono', monospace; letter-spacing: .18em; color: var(--arcade-cream); margin-bottom: 20px; background: var(--arcade-bg); padding: 6px 14px; }
-body .arcade-marquee h1 { margin: 0; max-width: none; font: 900 clamp(120px,19vw,252px)/.78 var(--arcade-display); letter-spacing: .025em; color: var(--arcade-cream); -webkit-text-stroke: 2px var(--arcade-bg); text-shadow: 0 5px 0 var(--arcade-magenta), 0 10px 0 #6d134d, 0 14px 0 var(--arcade-cyan), 3px 17px 0 var(--arcade-bg); }
-.marquee-tagline { margin-top: 32px; font: 800 clamp(23px,3.3vw,42px)/1.1 var(--arcade-display); letter-spacing: .13em; color: var(--arcade-cyan); text-transform: uppercase; text-shadow: 2px 2px 0 #090512; }
-.marquee-description { max-width: 570px; font-size: 16px; line-height: 1.65; color: var(--arcade-cream); margin: 22px auto 0; background: #160d2be6; padding: 8px 14px; }
+body .arcade-marquee h1 { margin: 0; max-width: none; font: 900 clamp(120px,19vw,252px)/.78 var(--arcade-display); letter-spacing: .025em; color: var(--arcade-cream); -webkit-text-stroke: 2px var(--arcade-bg); text-shadow: 0 5px 0 var(--arcade-magenta), 0 10px 0 #555555, 0 14px 0 var(--arcade-cyan), 3px 17px 0 var(--arcade-bg); }
+.marquee-tagline { margin-top: 32px; font: 800 clamp(23px,3.3vw,42px)/1.1 var(--arcade-display); letter-spacing: .13em; color: var(--arcade-cyan); text-transform: uppercase; text-shadow: 2px 2px 0 #050505; }
+.marquee-description { max-width: 570px; font-size: 16px; line-height: 1.65; color: var(--arcade-cream); margin: 22px auto 0; background: #111111e6; padding: 8px 14px; }
 body .arcade-marquee .hero-actions { justify-content: center; margin-top: 24px; }
 body .arcade-marquee .primary-button { min-width: 208px; }
 body .arcade-marquee .secondary-button { color: var(--arcade-cyan); background: var(--arcade-bg); border-color: var(--arcade-cyan); }
@@ -126,5 +126,9 @@ body .arcade-marquee .secondary-button { color: var(--arcade-cyan); background: 
 html, html[data-theme="dark"], html[data-theme="light"], html[data-theme="dark"] body { background: var(--bg); }
 html[data-theme="dark"] .product-visual--sync::before { background: none; }
 body .arcade-marquee h1 { position: relative; }
-body .arcade-marquee h1::after { content: attr(data-text); position: absolute; inset: 0; background: linear-gradient(to bottom, #fffbed 0%, #f8f0d8 43%, #938594 49%, #23143c 51%, #e5f7f2 53%, #84dbe8 79%, #16e6f4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 1px #160D2B; text-shadow: none; }
+body .arcade-marquee h1::after { content: attr(data-text); position: absolute; inset: 0; background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 43%, #999999 49%, #222222 51%, #eeeeee 53%, #bcbcbc 79%, #e8e8e8 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 1px #111111; text-shadow: none; }
 @media(max-width:720px) { body.suite-home .arcade-marquee h1 { font-size: clamp(110px,29vw,190px); } }
+
+/* Only decorative artwork is desaturated; original product captures retain their pixels. */
+.marquee-art { filter: grayscale(1); }
+html[data-theme="dark"] .sync-mark-tile { color: var(--arcade-cream); background: var(--bg-deep); }
