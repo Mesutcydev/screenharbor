@@ -417,5 +417,52 @@
     if (footerRelease && release.tag) footerRelease.textContent = release.tag.replace(/^vamp-terminal-/, '');
   };
 
+  const previewImages = document.querySelectorAll('.assistant-page .visual-shot, .assistant-page .gallery-card img, .assistant-desktop-preview img');
+  if (previewImages.length) {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'preview-lightbox';
+    dialog.setAttribute('aria-label', 'App preview');
+    const close = document.createElement('button');
+    close.className = 'preview-lightbox-close';
+    close.type = 'button';
+    close.textContent = '×';
+    close.setAttribute('aria-label', 'Close preview');
+    const large = document.createElement('img');
+    dialog.append(close, large);
+    document.body.append(dialog);
+    let previousOverflow = '';
+    let opener;
+    previewImages.forEach((img) => {
+      let trigger = img.closest('a');
+      if (!trigger) {
+        trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'preview-enlarge';
+        img.before(trigger);
+        trigger.append(img);
+      }
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.setAttribute('aria-label', 'Enlarge: ' + img.alt);
+      trigger.addEventListener('click', (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        opener = trigger;
+        large.src = img.currentSrc || img.src;
+        large.alt = img.alt;
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        dialog.showModal();
+      });
+    });
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = previousOverflow;
+      opener?.focus({preventScroll: true});
+    });
+  }
+
   fetch('/release.json', {cache:'no-store'}).then((response) => response.ok ? response.json() : null).then(applyRelease).catch(() => {});
 })();
