@@ -422,6 +422,24 @@
     if (footerRelease && release.tag) footerRelease.textContent = release.tag.replace(/^vamp-terminal-/, '');
   };
 
+  const marquee = document.querySelector('.arcade-marquee');
+  const motionToggle = document.querySelector('.hero-motion-toggle');
+  if (marquee && motionToggle) {
+    let userPaused = false;
+    let inView = true;
+    const updateMotion = () => { marquee.dataset.motionPaused = String(userPaused || !inView || document.hidden); };
+    motionToggle.addEventListener('click', () => {
+      userPaused = !userPaused;
+      motionToggle.setAttribute('aria-pressed', String(userPaused));
+      motionToggle.setAttribute('aria-label', userPaused ? 'Resume hero animation' : 'Pause hero animation');
+      motionToggle.textContent = userPaused ? 'Resume motion' : 'Pause motion';
+      updateMotion();
+    });
+    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; updateMotion(); }).observe(marquee);
+    document.addEventListener('visibilitychange', updateMotion);
+    updateMotion();
+  }
+
   const previewImages = document.querySelectorAll('.assistant-page .visual-shot, .assistant-page .gallery-card img, .assistant-desktop-preview img');
   if (previewImages.length) {
     const dialog = document.createElement('dialog');

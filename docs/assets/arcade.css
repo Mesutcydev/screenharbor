@@ -151,3 +151,17 @@ body .brand-mark svg { width: 40px; height: 40px; }
 body .client-preview, body .stream-preview { display: none; }
 body .product-hero:has(.stream-preview) { grid-template-columns: 1fr; min-height: 0; }
 body .product-hero:has(.stream-preview) .product-hero-copy { max-width: 820px; }
+
+/* Arcade motion stays on decorative layers; copy and controls remain stationary. */
+.hero-grid-motion { position: absolute; z-index: -1; pointer-events: none; left: 5%; right: 5%; bottom: 3%; height: 24%; overflow: hidden; perspective: 240px; opacity: .22; }
+.hero-grid-motion::before { content: ''; position: absolute; inset: -80% -30%; background: repeating-linear-gradient(0deg, transparent 0 37px, #eee 38px 39px, transparent 40px); transform: rotateX(58deg); animation: arcade-grid-travel 3s linear infinite; }
+.hero-frame-sweep { position: absolute; inset: 10px; pointer-events: none; border: 1px solid transparent; overflow: hidden; }
+.hero-frame-sweep::before { content: ''; position: absolute; left: -25%; top: 0; width: 25%; height: 2px; background: linear-gradient(90deg, transparent, #fff, transparent); animation: arcade-frame-travel 7s linear infinite; }
+body .arcade-marquee h1::after { background-image: linear-gradient(105deg, transparent 40%, #ffffffa0 48%, transparent 56%), linear-gradient(to bottom, #fff 0%, #f4f4f4 43%, #999 49%, #222 51%, #eee 53%, #bcbcbc 79%, #e8e8e8 100%); background-size: 250% 100%, 100% 100%; background-repeat: no-repeat; animation: arcade-chrome-sweep 8s linear infinite; }
+.hero-motion-toggle { position: absolute; left: 28px; bottom: 14px; padding: 6px 8px; background: #111; color: #ccc; border: 1px solid #777; font: 500 9px/1.2 'IBM Plex Mono', monospace; text-transform: uppercase; cursor: pointer; z-index: 3; }
+@keyframes arcade-grid-travel { from { background-position: 0 0; } to { background-position: 0 40px; } }
+@keyframes arcade-frame-travel { 0%, 15% { transform: translateX(0); } 65%, 100% { transform: translateX(520%); } }
+@keyframes arcade-chrome-sweep { 0%, 20% { background-position: 160% 0, 0 0; } 55%, 100% { background-position: -80% 0, 0 0; } }
+body .arcade-marquee[data-motion-paused="true"] *, body .arcade-marquee[data-motion-paused="true"] *::before, body .arcade-marquee[data-motion-paused="true"] *::after { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .hero-grid-motion, .hero-frame-sweep, .hero-motion-toggle { display: none; } body .arcade-marquee h1::after { animation: none; background-image: linear-gradient(to bottom, #fff 0%, #f4f4f4 43%, #999 49%, #222 51%, #eee 53%, #bcbcbc 79%, #e8e8e8 100%); background-size: 100% 100%; } }
+@media(max-width:720px) { .hero-motion-toggle { left: 16px; bottom: 10px; font-size: 8px; } }

@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css?v=suite-16">
   <link rel="stylesheet" href="assets/products.css?v=preview-lightbox-20260908">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/arcade.css?v=arcade-hide-previews-20260908">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/arcade.css?v=arcade-motion-20260908">
 </head>
 <body class="suite-home">
   <header class="site-header">
@@ -40,6 +40,8 @@
   <main id="top">
     <section class="container product-hero arcade-marquee ArcadeFrame ScanlineOverlay" aria-labelledby="hero-title">
       <img class="marquee-art" src="assets/arcade/marquee-art.png" alt="" fetchpriority="high" width="1536" height="1024">
+      <div class="hero-grid-motion" aria-hidden="true"></div><div class="hero-frame-sweep" aria-hidden="true"></div>
+      <button class="hero-motion-toggle" type="button" aria-pressed="false" aria-label="Pause hero animation">Pause motion</button>
       <span class="ArcadeBadge" aria-label="Open source">Open<br>source</span>
       <p class="marquee-overline">PRIVATE CONNECTION / COMPLETE CONTROL</p>
       <h1 id="hero-title" data-text="VAMP">VAMP</h1>
@@ -85,6 +87,6 @@
     <section class="container product-section" id="assistant"><div class="product-section-head"><div><div class="section-kicker"><span class="number">03</span><span class="bar"></span></div><h2 class="section-title" data-i18n="ai.homeTitle">An AI workspace of your own.</h2></div><p class="section-lead" data-i18n="ai.homeLead">Meet Vamp Assistant: local AI, coding agents, specialist bots, and your work within reach on mobile.</p></div><article class="family-card optional-assistant"><div><div class="eyebrow"><span data-i18n="ai.independent">Mac app · independent of Sync</span></div><h3>Vamp Assistant</h3><p data-i18n="ai.homeCopy">Write and research, build and review code, or give work to four specialist bots. Bring your own models, providers, skills, and chat history. Use the built-in browser and iOS Simulator, then follow sessions and approve work from your phone. Sync is not required.</p><div class="card-meta"><span>LOCAL AI + API</span><span>CODE + BOTS</span><span>iPHONE + iPAD</span></div><a class="text-button" href="assistant/"><span data-i18n="ux.assistantMore">Explore Assistant →</span></a></div><a class="family-preview assistant-desktop-preview" href="assets/assistant/teenlight/00-home.jpg" data-theme-light="assets/assistant/teenlight/00-home.jpg" data-theme-dark="assets/assistant/teendark/00-home.png" target="_blank" rel="noreferrer" aria-label="Open full Assistant Mac preview"><img src="assets/assistant/teenlight/00-home.jpg" data-theme-light="assets/assistant/teenlight/00-home.jpg" data-theme-dark="assets/assistant/teendark/00-home.png" alt="Vamp Assistant home with model picker and agent composer" loading="lazy" width="1240" height="840"></a></article></section></main>
 
   <footer class="container site-footer"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#top" aria-label="Vamp home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 5h24l6 6v17H28l-3 8-5-8-5 8-3-8H2V11zm2 6-2 2v9h24v-9l-2-2z"/><path fill="currentColor" d="M12 15h6v3h-6zm10 0h6v3h-6z"/></svg></span><span class="brand-word">Vamp</span></a><p data-i18n="footer.familyCopy">Private AI and focused Mac streaming.</p></div><div class="footer-links"><a href="sync/">Sync</a><a href="#control">Control</a><a href="assistant/">Assistant</a><a href="stream/">Stream</a><a href="about/">About</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a><a href="https://github.com/Mesutcydev/vamp-assistant" target="_blank" rel="noreferrer">Assistant GitHub ↗</a><a href="https://github.com/Mesutcydev/vamp-suite" target="_blank" rel="noreferrer">Suite GitHub ↗</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Vamp · Apache 2.0</span><span data-i18n="footer.meta">local-first · peer-approved · no hosted relay</span></div></footer>
-  <script src="assets/site.js?v=arcade-mono-20260908" defer></script>
+  <script src="assets/site.js?v=arcade-motion-20260908" defer></script>
 </body>
 </html>
